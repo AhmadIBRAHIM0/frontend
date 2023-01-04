@@ -1,17 +1,17 @@
 import React from "react";
-
-export default function Sidebar() {
+import {Link} from "react-router-dom";
+function Sidebar() {
     return (
             <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
                 <div className="space-y-3">
                     <div className="flex items-center">
-                        <h2 className="text-xl font-bold text-white">Dashboard</h2>
+                        <h2 className="text-xl font-bold text-white">Medisys</h2>
                     </div>
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
                             <li className="rounded-sm">
-                                <a
-                                    href="#"
+                                <Link
+                                    to={'/dashboard'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -29,11 +29,11 @@ export default function Sidebar() {
                                         />
                                     </svg>
                                     <span className="text-gray-100">Dashboard</span>
-                                </a>
+                                </Link>
                             </li>
                             <li className="rounded-sm">
-                                <a
-                                    href="#"
+                                <Link
+                                    to={'/users'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -51,7 +51,7 @@ export default function Sidebar() {
                                         />
                                     </svg>
                                     <span className="text-gray-100">Appointments</span>
-                                </a>
+                                </Link>
                             </li>
                             <li className="rounded-sm">
                                 <a
@@ -130,3 +130,5 @@ export default function Sidebar() {
             </div>
     );
 }
+
+export default Sidebar;
