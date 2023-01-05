@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Sidebar from "./components/Shared/SideBar";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Dashboard from "./components/Pages/Dashboard";
 import Users from "./components/Pages/Users";
