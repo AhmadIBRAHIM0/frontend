@@ -1,9 +1,11 @@
+import Wrapper from "../Wrapper";
+
 function Users () {
 
     return (
-        <div>
+        <Wrapper>
             Users
-        </div>
+        </Wrapper>
     )
 }
 

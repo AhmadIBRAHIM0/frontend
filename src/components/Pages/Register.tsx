@@ -1,6 +1,19 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [bloodGroup, setBloodGroup] = useState('');
+    const [gender, setGender] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const navigate = useNavigate();
+
     const [allergies, setAllergies] = useState([
         {
             allergy: '',
@@ -17,14 +30,38 @@ const Register = () => {
         setAllergies(values);
     }
 
-    const submitHandler = (event: React.FormEvent) => {
-        event.preventDefault();
-        const allergiesData = allergies.map((allergy) => allergy.allergy);
-        console.log(allergiesData);
+    const patient = {
+        email: email,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
+        blood_group: bloodGroup,
+        birthdate: birthDate,
+        gender: gender,
+        phone: phone,
+        address: address,
+        allergies: ['']
     }
 
+    const submitHandler = async (event: React.FormEvent) => {
+        event.preventDefault();
+        patient['allergies'] = allergies.map((allergy) => allergy.allergy);
+        const response = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(patient)
+        })
+        const data = await response;
+        console.log(data);
+
+        if (data.status === 201) {
+            navigate('/login');
+        }
+    }
     return (
-        <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+        <div className="relative flex flex-col justify-center min-h-screen overflow-hidden mt-6 mb-6">
             <div
                 className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-rose-600/40 ring ring-2 ring-purple-600 lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-purple-700 underline uppercase decoration-wavy">
@@ -40,7 +77,9 @@ const Register = () => {
                             <input
                                 name="first_name"
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                type="text"/>
+                                type="text"
+                                onChange={(e) => setFirstName(e.target.value)}
+                            />
                         </div>
                         <div className="w-full md:w-1/2 px-3">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -50,7 +89,9 @@ const Register = () => {
                             <input
                                 name="last_name"
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                type="text"/>
+                                type="text"
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div className="mb-2">
@@ -63,6 +104,7 @@ const Register = () => {
                             name="email"
                             type="email"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="mb-2">
@@ -75,6 +117,7 @@ const Register = () => {
                             name="password"
                             type="password"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-wrap -mx-3 mb-2">
@@ -87,6 +130,7 @@ const Register = () => {
                                 <select
                                     name="blood_group"
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    onChange={(e) => setBloodGroup(e.target.value)}
                                 >
                                     <option>A+</option>
                                     <option>A-</option>
@@ -116,6 +160,7 @@ const Register = () => {
                                 <select
                                     name="gender"
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    onChange={(e) => setGender(e.target.value)}
                                 >
                                     <option value={'Male'}>Male</option>
                                     <option value={'Female'}>Female</option>
@@ -142,6 +187,21 @@ const Register = () => {
                             type="date"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             max={new Date().toISOString().split('T')[0]}
+                            onChange={(e) => setBirthDate(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label
+                            className="block text-sm font-semibold text-gray-800"
+                        >
+                            Phone Number
+                        </label>
+                        <input
+                            name="phone"
+                            required
+                            type="number"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
                     <div className="mb-2">
@@ -154,6 +214,7 @@ const Register = () => {
                             name="address"
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                             rows={3}
+                            onChange={(e) => setAddress(e.target.value)}
                         />
                     </div>
                     <div className="flex justify-center">

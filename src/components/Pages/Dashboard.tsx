@@ -1,8 +1,10 @@
+import Wrapper from "../Wrapper";
+
 function Dashboard () {
     return (
-        <div>
+        <Wrapper>
             Dashboard
-        </div>
+        </Wrapper>
     )
 }
 

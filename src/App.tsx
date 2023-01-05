@@ -14,16 +14,9 @@ function App() {
                 <Routes>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'/register'} element={<Register/>}/>
+                    <Route path={'/dashboard'} element={<Dashboard/>}/>
+                    <Route path={'/users'} element={<Users/>}/>
                 </Routes>
-                <div className="flex">
-                    <Sidebar/>
-                    <main>
-                        <Routes>
-                            <Route path={'/dashboard'} element={<Dashboard/>}/>
-                            <Route path={'/users'} element={<Users/>}/>
-                        </Routes>
-                    </main>
-                </div>
             </BrowserRouter>
         </>
     )
