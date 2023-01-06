@@ -1,4 +1,4 @@
-import Wrapper from "../Wrapper";
+import Wrapper from "../Shared/Wrapper";
 import React, {useEffect, useState} from "react";
 
 const Doctors = () => {

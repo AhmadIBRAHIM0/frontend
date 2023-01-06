@@ -22,6 +22,9 @@ const Login = () => {
         const data = await response.json();
         if (data.accessToken) {
             localStorage.setItem('token', data.accessToken);
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('role', data.role);
+            console.log(data);
             navigate('/dashboard');
         }
     }

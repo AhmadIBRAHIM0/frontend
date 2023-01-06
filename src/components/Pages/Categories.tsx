@@ -1,6 +1,6 @@
 import {Category} from "../../models/Category";
 import React, {useEffect, useState} from "react";
-import Wrapper from "../Wrapper";
+import Wrapper from "../Shared/Wrapper";
 import {Link} from "react-router-dom";
 
 const Categories = () => {
@@ -42,10 +42,10 @@ const Categories = () => {
         <Wrapper>
             <div className="block">
                 <h3 className="text-2xl font-semibold tracking-wide mt-6 mb-6">Categories</h3>
-                    <Link to="/categories/create"
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-6">
-                        Create
-                    </Link>
+                <Link to="/categories/create"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-6">
+                    Create
+                </Link>
                 <div className="flex flex-col mt-6">
                     <div className="overflow-x-auto">
                         <div className="p-1.5 w-full inline-block align-middle">

@@ -1,6 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import Wrapper from "../Wrapper";
+import Wrapper from "../Shared/Wrapper";
 
 const EditCategory = () => {
     const {id} = useParams();

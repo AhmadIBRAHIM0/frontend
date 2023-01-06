@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
-import Wrapper from "../Wrapper";
+import Wrapper from "../Shared/Wrapper";
 
 const CreateCategory = () => {
 
