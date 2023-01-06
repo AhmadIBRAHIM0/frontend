@@ -1,6 +1,13 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 function Sidebar() {
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+
+    }
     return (
             <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
                 <div className="space-y-3">
@@ -10,7 +17,7 @@ function Sidebar() {
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
                             <li className="rounded-sm">
-                                <Link
+                                <NavLink
                                     to={'/dashboard'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
@@ -29,11 +36,11 @@ function Sidebar() {
                                         />
                                     </svg>
                                     <span className="text-gray-100">Dashboard</span>
-                                </Link>
+                                </NavLink>
                             </li>
                             <li className="rounded-sm">
-                                <Link
-                                    to={'/users'}
+                                <NavLink
+                                    to={'/doctors'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -50,12 +57,12 @@ function Sidebar() {
                                             d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
                                         />
                                     </svg>
-                                    <span className="text-gray-100">Appointments</span>
-                                </Link>
+                                    <span className="text-gray-100">Doctors</span>
+                                </NavLink>
                             </li>
                             <li className="rounded-sm">
-                                <a
-                                    href="#"
+                                <NavLink
+                                    to={'/patients'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -72,12 +79,12 @@ function Sidebar() {
                                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                                         />
                                     </svg>
-                                    <span className="text-gray-100">Doctors</span>
-                                </a>
+                                    <span className="text-gray-100">Patients</span>
+                                </NavLink>
                             </li>
                             <li className="rounded-sm">
-                                <a
-                                    href="#"
+                                <NavLink
+                                    to={'/categories'}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -99,12 +106,12 @@ function Sidebar() {
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                         />
                                     </svg>
-                                    <span className="text-gray-100">Patients</span>
-                                </a>
+                                    <span className="text-gray-100">Categories</span>
+                                </NavLink>
                             </li>
                             <li className="rounded-sm">
-                                <a
-                                    href="#"
+                                <button
+                                    onClick={handleLogout}
                                     className="flex items-center p-2 space-x-3 rounded-md"
                                 >
                                     <svg
@@ -122,7 +129,7 @@ function Sidebar() {
                                         />
                                     </svg>
                                     <span className="text-gray-100">Logout</span>
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </div>

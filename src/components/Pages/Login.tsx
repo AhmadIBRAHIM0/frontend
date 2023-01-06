@@ -20,7 +20,6 @@ const Login = () => {
             })
         });
         const data = await response.json();
-        console.log(data);
         if (data.accessToken) {
             localStorage.setItem('token', data.accessToken);
             navigate('/dashboard');
